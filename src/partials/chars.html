@@ -1,0 +1,140 @@
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-table.min.js"></script>
+<link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+<link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+
+<div class="chars" data-aos="zoom-out">
+  <div class="container">
+    <div class="chars__wrap">
+      <div class="chars__item">
+        <div class="chars__wrap" id="graph-1" data-graph="1" style="width:500px; height: 328px;"></div>
+        <div class="chars__desc"><strong>Graph #1</strong> Comparative indicators of something</div>
+      </div>
+      <div class="chars__item">
+        <div class="chars__wrap" id="graph-2" data-graph="1" style="width:500px; height: 328px;"></div>
+        <div class="chars__desc"><strong>Graph #2</strong> Comparative indicators of something</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  anychart.onDocumentReady(function () {
+    // Данные для графика №1
+    var data = anychart.data.set([
+      ["0", 0],
+      ["50", 110],
+      ["100", 220],
+      ["150", 260],
+      ["200", 300],
+      ["250", 340],
+      ["300", 380],
+      ["350", 400],
+      ["400", 420],
+      ["450", 460],
+      ["500", 500],
+      ["550", 580],
+      ["600", 660],
+      ["650", 705],
+      ["700", 750],
+      ["750", 775],
+      ["800", 800]
+    ]);
+  
+    // Настройка данных для линии
+    var seriesData = data.mapAs({ x: 0, value: 1 });
+  
+    // Создаем линейный график
+    var chart = anychart.line();
+    chart.interactivity(false)
+  
+    // Создаем серию линий
+    var series = chart.spline(seriesData);
+    series.name("Line");
+  
+    // Настройки заливки под линией
+    series.fill("#1B90D2", 0.2);
+    series.stroke("#1B90D2", 2);
+  
+    // Добавляем маркер как отдельную серию
+    var markerData = anychart.data.set([
+      ["700", 750]
+    ]);
+  
+    var markerSeries = chart.marker(markerData.mapAs({ x: 0, value: 1 }));
+    markerSeries.type('circle').size(8).fill('green').stroke("green");
+  
+    // Добавляем пояснительную метку (label) к маркеру
+    var label = chart.label();
+    label.text("Breakeven point")
+        .position("right-top")  // Позиция относительно маркера
+        .anchor("right-top")
+        .offsetX(120)
+        .offsetY(0)
+        .fontColor("#333")
+        .fontSize(12);
+  
+    // Заголовки осей
+    chart.xAxis().title("Miles");
+    chart.yAxis().title("$");
+  
+    // Заливка под графиком
+    chart.area(seriesData).fill("#1B90D2", 0.1);
+
+    // Контейнер для графика №1
+    chart.container("graph-1");
+  
+    // Рисуем график №1
+    chart.draw();
+  
+    // ===== График №2 =====
+  
+    // Данные для графика №2 (Power, Fuel, RPM, Engine Temp)
+    var data2 = anychart.data.set([
+      ["Power, HP", 450, 530],
+      ["Fuel, MPG", 120, 150],
+      ["RPM", 330, 350],
+      ["Engine temp, ℉", 212, 230]
+    ]);
+  
+    // Создаем столбчатый график для графика №2
+    var chart2 = anychart.column();
+    chart2.interactivity(false)
+  
+    // Привязываем данные к графику
+    var series1 = chart2.column(data2.mapAs({ x: 0, value: 1 }));
+    var series2 = chart2.column(data2.mapAs({ x: 0, value: 2 }));
+
+    var diamiondHatch = acgraph.hatchFill("diamiond", "#1B90D2 0.3");
+  
+    // Настройки первого столбца
+    series1.fill(diamiondHatch);
+    series1.stroke("#D3D3D3");
+  
+    // Настройки второго столбца
+    series2.fill("#008000");
+    series2.stroke("#008000");
+  
+    // Добавляем текстовые метки для каждой категории
+    series2.labels().enabled(true);
+    series2.labels()
+      .position("center-top")
+      .anchor("center-top")
+      .offsetY(-25);
+  
+    // Заголовки осей для графика №2
+    chart2.xAxis().title("Parameters");
+    series1.name("Values");
+    series2.name("Values");
+  
+    // Контейнер для графика №2
+    chart2.yAxis(false)
+    chart2.container("graph-2");
+  
+    // Рисуем график №2
+    chart2.draw();
+  });
+  </script>
+  

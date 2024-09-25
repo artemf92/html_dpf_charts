@@ -6,11 +6,22 @@
 
 // подключения компонентов страницы
 @import "./components/header";
+@import "./components/banner";
+@import "./components/benefits";
+@import "./components/metrics";
+@import "./components/features";
+@import "./components/testimonials";
+@import "./components/about";
+@import "./components/reviews";
+@import "./components/footer";
+@import "./components/result";
+@import "./components/chars";
 
-// тестовые стили, удалите их
-.page__body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: var(--vh);
+body {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-style: normal;
+  color: var(--color-gray-second);
 }
+
+.burger { @include burger }

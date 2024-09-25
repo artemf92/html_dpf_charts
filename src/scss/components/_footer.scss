@@ -1,0 +1,113 @@
+.footer {
+  background-color: var(--color-second);
+  padding-top: 100px;
+  padding-bottom: 32px;
+  color: #C2D3DC;
+
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 80px;
+    margin-bottom: 57px;
+
+    .widget-block {
+      flex: 0 0 calc(25% - 60px);
+    }
+  }
+
+  &__menu-wrap {
+    a {
+      display: block;
+      color: #C2D3DC;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+  }
+
+  &__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    &-title {
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      color: var(--color-main);
+    }
+  }
+
+  &__middle {
+    margin-bottom: 37px;
+  }
+
+  &__socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 26px;
+
+    &-item {
+      
+    }
+    
+    &-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1B4963;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 19px 19px;
+      transition: all .4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+      &:hover, &:focus {
+        background-color: var(--color-second);
+      }
+
+      &--fb {
+        background-image: url('../img/icon-fb.svg');
+      }
+      &--x {
+        background-image: url('../img/icon-twitter.svg');
+      }
+      &--in {
+        background-image: url('../img/icon-in.svg');
+      }
+      &--inst {
+        background-image: url('../img/icon-inst.svg');
+      }
+    }
+  }
+
+}
+.copyright {
+  text-align: center;
+}
+
+@include tablet {
+  .footer__top {
+    gap: 30px;
+    justify-content: space-between;
+  }
+  .footer__top .widget-block {
+    flex: 0 0 calc(50% - 30px);
+  }
+}
+@include mobile {
+  .footer__menu-title {
+    margin-bottom: 10px;
+  }
+  .footer {
+    padding-top: 30px;
+  }
+  .footer__top {
+    gap: 10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .footer__top .widget-block {
+    flex: 0 0 100%;
+  }
+}

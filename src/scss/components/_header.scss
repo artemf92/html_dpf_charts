@@ -1,1 +1,109 @@
-// ваш код
+.header {
+  &__top {
+    padding: 32px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  &__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+
+    &-item {
+      &:not(:last-child) {
+        margin-right: 24px;
+      }
+
+      a {
+        font-size: 16px;
+      }
+    }
+  }
+
+}
+
+.hero {
+  color: #fff;
+  background-image: url('../img/hero.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 0;
+  min-height: 100vh;
+
+  .header__menu {
+    a {
+      color: #fff;
+    }
+  }
+}
+
+@include tablet {
+  .header .burger {
+    display: block;
+    position: absolute !important;
+    top: 40px;
+    right: 40px;
+    z-index: 100;
+    color: var(--light-color) !important;
+
+    &--active {
+      color: var(--color-main) !important;
+    }
+  }
+  .header__top {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .header__menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: var(--light-color);
+    transition: all .4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    pointer-events: none;
+    z-index: -10;
+    visibility: hidden;
+    opacity: 0;
+
+    &-item:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    
+    a {
+      color: var(--color-main) !important;
+    }
+  }
+  .header__menu.menu--active {
+    transform: translateX(0);
+    pointer-events: initial;
+    visibility: visible;
+    opacity: 1;
+    z-index: 10;
+    transition: all .4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+}
+@include mobile {
+  .header .burger {
+    right: 20px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .header .burger {
+    // right: 0;
+  }
+}

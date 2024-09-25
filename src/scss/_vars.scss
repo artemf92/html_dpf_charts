@@ -2,11 +2,15 @@
 // colors
 :root {
   // base
-  --font-family: "Open Sans", sans-serif;
-  --content-width: 1170px;
+  --font-family: "Century Gothic", sans-serif;
+  --content-width: 1350px;
   --container-offset: 15px;
   --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
-
+  
   // colors
   --light-color: #fff;
+  --color-main: #1B90D2;
+  --color-second: #0F3449;
+  --color-gray: #8C8C8C;
+  --color-gray-second: #4B4B4B;
 }
